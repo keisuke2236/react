@@ -3,7 +3,6 @@ export default function Button() {
     console.log('I don\'t do anything');
   }
 
-
   // onClick 自体がイベントハンドラー
   return (
     <>
