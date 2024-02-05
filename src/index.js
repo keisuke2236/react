@@ -2,7 +2,7 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 // 章ごとにAppを切り替え
-import App from "./2-4/App";
+import App from "./2-5/App";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
