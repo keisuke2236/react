@@ -1,44 +1,33 @@
 import { useState } from 'react';
-import { initialLetters } from './data.js';
-import Letter from './Letter.js';
 
-export default function MailClient() {
-  const [letters, setLetters] = useState(initialLetters);
-  const [highlightedId, setHighlightedId] = useState(null);
-
-  function handleHover(letterId) {
-    setHighlightedId(letterId);
-  }
-
-  function handleStar(starredId) {
-    setLetters(letters.map(letter => {
-      if (letter.id === starredId) {
-        return {
-          ...letter,
-          isStarred: !letter.isStarred
-        };
-      } else {
-        return letter;
-      }
-    }));
-  }
+function Panel({ title, children }) {
+  const [isActive, setIsActive] = useState(false);
 
   return (
+    <section className="panel">
+      <h3>{title}</h3>
+      {isActive ? (
+        <p>{children}</p>
+      ) : (
+        <button onClick={() => setIsActive(true)}>
+          Show
+        </button>
+      )}
+    </section>
+  );
+}
+
+export default function Accordion() {
+  return (
     <>
-      <h2>Inbox</h2>
-      <ul>
-        {letters.map(letter => (
-          <Letter
-            key={letter.id}
-            letter={letter}
-            isHighlighted={
-              letter.id === highlightedId
-            }
-            onHover={handleHover}
-            onToggleStar={handleStar}
-          />
-        ))}
-      </ul>
+      <h2>山田さんとは</h2>
+      <Panel title="概要">
+        19940101生まれの大根
+      </Panel>
+      <Panel title="経歴">
+        2010年に大根になる、2020年に大根をやめる
+        そうして2021年に大根になる
+      </Panel>
     </>
   );
 }
